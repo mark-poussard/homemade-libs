@@ -23,21 +23,21 @@ int main(int argc, char**argv){
   long int data[NB_DATA];
   char *data_id[NB_DATA];
   struct hash_node_t *data_nodes[NB_DATA];
-  srandom(time(NULL));
+  srand(time(NULL));
   for(int i=0; i < NB_HASH_T; i++){
     my_hash_t[i] = hash_table__create(basic_hash_function, HASH_TABLE_SIZE*(i+1));
     assert(my_hash_t[i] != NULL);
   }
   for(int i=0; i < NB_DATA; i++){
-    int size = (random() % 20) +1;
+    int size = (rand() % 20) +1;
     data_id[i] = malloc(size+1);
     do{
       for(int j=0; j < size; j++){
-	*((data_id[i])+j) = (char)((random() % 90)+33);
+	*((data_id[i])+j) = (char)((rand() % 90)+33);
       }
       *((data_id[i])+size) = 0;
     }while(string_already_exists(data_id, i));
-    data[i] = random();
+    data[i] = rand();
     hash_table__insert(data_nodes[i] = hash_node__create(data_id[i], (void *)&(data[i])), my_hash_t[0]);
   }
 

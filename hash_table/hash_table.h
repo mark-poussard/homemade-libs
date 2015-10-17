@@ -25,7 +25,7 @@ struct hash_table_t * hash_table__create(int (*hash_func)(const char *, int), in
 
 void hash_table__destroy(struct hash_table_t *table);
 
-void * hash_table__lookup(char *id, struct hash_table_t *table);
+void * hash_table__lookup(const char *id, const struct hash_table_t *table);
 
 int hash_table__insert(struct hash_node_t *n, struct hash_table_t *table);
 
@@ -38,6 +38,6 @@ void hash_node__destroy(struct hash_node_t *n);
 int basic_hash_function(const char *id, int size);
 
 //------------------------DEBUG FUNCTIONS---------------------------
-void hash_table__dbg__print(struct hash_table_t *table);
+void hash_table__dbg__print(const struct hash_table_t *table);
 
 #endif

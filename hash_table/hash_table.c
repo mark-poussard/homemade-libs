@@ -24,7 +24,7 @@ void hash_table__destroy(struct hash_table_t *table){
   free(table);
 }
 
-void * hash_table__lookup(char *id, struct hash_table_t *table){
+void * hash_table__lookup(const char *id, const struct hash_table_t *table){
   struct hash_node_t *n = (table->t)[table->hash_func(id, table->size)];
   while(n){
     if(!strcmp(n->id, id))
@@ -84,7 +84,7 @@ int basic_hash_function(const char *id, int size){
 }
 
 //------------------------DEBUG FUNCTIONS---------------------------
-void hash_table__dbg__print(struct hash_table_t *table){
+void hash_table__dbg__print(const struct hash_table_t *table){
   for(int i=0; i < table->size; i++){
     struct hash_node_t *n = (table->t)[i];
     fprintf(stderr, "---- Entry n°%d ----\n", i);
